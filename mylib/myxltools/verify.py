@@ -1,6 +1,6 @@
 import re
 import os
-from myxl import *
+from .myxl import *
 
 
 # 以下为可用限制条件参数示例

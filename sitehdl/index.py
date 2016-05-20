@@ -23,10 +23,10 @@ class IndexHdl(BaseHandler):
             name = os.path.join(mypath,name)
             if os.path.exists(name):
                 nm,ext = os.path.splitext(name)
-                name = ''.join((name,'1',ext))
+                name = ''.join((nm,'1',ext))
             with open(name,'wb') as f:
                 f.write(myfile.body)
-            info = verify.verify_file(filename,settings.filters,settings.limits,settings.ncols)
+            info = verify.verify_file(name,settings.filters,settings.limits,settings.ncols)
             if info:
                 os.remove(name)
                 info = '数据有误，请重新上传！\n' + info

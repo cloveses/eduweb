@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import os
 import sys
-
+from mylib.myxltools.verify import verify_data_str,verify_data_int,verify_data_float
 port = 8080
 
 CURRENT_PATH = os.path.abspath(os.path.dirname(__file__))
@@ -65,32 +65,32 @@ CPTCH = {'text': "",
 VERIFY_TEXT_SALT = "KDJFk**^$(_+hjhHHHY7789hhg^$#"
 PASSWORD_SALT = "KDDJKKJI*&^^&7jkdfjhu)((__I?>"
 
-# cols_A = {
-#     'min':0,
-#     'max':100,
-# }
+cols_A = {
+    'min':0,
+    'max':100,
+}
 
-# cols_B = {
-#     'length_min':4,
-#     'length_max':8,
-#     're_exp':r'[ab]',
-# }
+cols_B = {
+    'length_min':4,
+    'length_max':8,
+    're_exp':r'[ab]',
+}
 
-# cols_C = {
-#     'length_min':4,
-#     're_exp':r'[ab]',
-#     'choices':['dkdakk','dddkb'],
-# }
+cols_C = {
+    'length_min':4,
+    're_exp':r'[ab]',
+    'choices':['dkdakk','dddkb'],
+}
 
-# cols_D = {
-#     'min':0,
-#     'max':100,
-# }
-# limits = [cols_A,cols_B,cols_C,cols_D]
-# filters = [verify_data_int,verify_data_str,verify_data_str,verify_data_float]
-#ncols = 4  #xls file's columns
+cols_D = {
+    'min':0,
+    'max':100,
+}
+limits = [cols_A,cols_B,cols_C,cols_D]
+filters = [verify_data_int,verify_data_str,verify_data_str,verify_data_float]
+ncols = 4  #xls file's columns
 
-if 'limits' not in locals() or 'filters' not in  locals() or ncols not in locals()\
+if 'limits' not in locals() or 'filters' not in  locals() or 'ncols' not in locals()\
         or not limits or not filters:
     print('Do not set filters or limits!\nServer can not start......')
     sys.exit(1)
