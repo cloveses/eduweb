@@ -12,3 +12,10 @@ class User(Document):
     name = StringField()
     passwd = StringField()
     lastdate = DateTimeField(default=datetime.now())
+
+class ProjectName(Document):
+    name = StringField(required=True)
+    url = StringField(required=True)
+    status = BooleanField(default=True)
+
+        

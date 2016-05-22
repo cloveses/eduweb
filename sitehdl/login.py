@@ -12,6 +12,7 @@ from db import controls
 class IndexHdl(BaseHandler):
     @session
     def get(self):
+        controls.add_admin()
         vf_txt,v_key = self.gen_verify_text()
         self.session['verifytext'] = vf_txt
         if self.current_user:
@@ -57,6 +58,8 @@ class IndexHdl(BaseHandler):
         if user:
             self.set_secure_cookie('name',user.name)
             self.session['name'] = tools.make_verifytext_key(user.name)
+        else:
+            self.set_secure_cookie('info','%s用户名已被注册!' % name)
         self.redirect('/')
 
 

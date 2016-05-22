@@ -84,8 +84,9 @@ class BaseHandler(tornado.web.RequestHandler):
 
     @session
     def get_current_user(self):
-        name = self.get_secure_cookie('name').decode('utf-8')
+        name = self.get_secure_cookie('name')
         if name:
+            name = name.decode('utf-8')
             v = tools.make_verifytext_key(name)
             if v == self.session['name']:
                 return name

@@ -98,8 +98,9 @@ def session(func):
     def warpper(self, *args, **kwargs):
         cookie_name = session_settings['cookie_name']
         cookie_expires = session_settings["cookie_expires_days"]
-        session_id = self.get_secure_cookie(cookie_name).decode('utf-8')
+        session_id = self.get_secure_cookie(cookie_name)
         if session_id:
+            session_id = session_id.decode('utf-8')
             # print('session id:',session_id)
             session = mgr.load_session(session_id)
             logger.debug("Load session: {0}".format(session_id))

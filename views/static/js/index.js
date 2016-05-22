@@ -35,7 +35,7 @@
         xhr.addEventListener("load", uploadComplete, false);
         xhr.addEventListener("error", uploadFailed, false);
         xhr.addEventListener("abort", uploadCanceled, false);
-        xhr.open("POST", "/");
+        xhr.open("POST",document.getElementById('posturl').value);
         xhr.send(fd);
       }
 
