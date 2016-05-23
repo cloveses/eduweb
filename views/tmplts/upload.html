@@ -28,17 +28,19 @@
 
     <div class="row" style="margin-top:10px;">
         <div class="col-md-1"></div>
-        <div class="col-md-3">
-        %for url in urls:
-        <ul class="list-unstyled">
-            <li><a href="/${url.url}"  class="btn btn-primary ${'disabled' if not url.status else ''}">${url.name}</a></li>
+        <div class="col-md-2">
+        <ul class="nav nav-pills  nav-stacked">
+            <li> <a href="/" >首页</a></li>
+            %for url in urls:
+                <li><a href="/upload/${url.url}"  class="${'disabled' if not url.status or url.url == curl else ''}">${url.name}</a></li>
+            %endfor
         </ul>
-        %endfor
         </div>
-        <div class="col-md-7"  style="border-left:1px solid #999;padding-left:30px;">
-        <p>
-        help
+        <div class="col-md-3"  style="border-left:1px solid #999;padding-left:30px;">
+        <p class="h3 text-center">
+        ${name}
         </p>
+        <br/>
             <form method="post" id="uploadform" role="form" enctype="multipart/form-data">
             ${xsrf_form_html()}
             <input type="hidden" value="/szupload" id='posturl' />
@@ -57,12 +59,13 @@
                <div class="progress-bar progress-bar-success" role="progressbar" 
                   aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"  id="myuploadprogress"  
                   style="width: 0%;">
-                  <span class="sr-only">90% 完成（成功）</span>
-               </div>
+<!--                   <span class="sr-only">90% 完成（成功）</span>
+ -->               </div>
             </div>
                 <div id="progressNumber"></div>
             </form>
         </div>
+        <div class="col-md-5"  style="border-left:1px solid #999;padding-left:30px;">${introduce}</div>
          <div class="col-md-1"></div>
    </div>
     %endif

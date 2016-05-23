@@ -27,11 +27,12 @@
     <div class="row" style="margin-top:10px;">
         <div class="col-md-1"></div>
         <div class="col-md-3">
-        %for url in urls:
-        <ul class="list-unstyled">
-            <li><a href="/${url.url}"  class="btn btn-primary ${'disabled' if not url.status else ''}">${url.name}</a></li>
+        <ul class="nav nav-pills  nav-stacked">
+            <li> <a href="/" >首页</a></li>
+            %for url in urls:
+                <li><a href="/upload/${url.url}"  class="${'disabled' if not url.status else ''}">${url.name}</a></li>
+            %endfor
         </ul>
-        %endfor
         </div>
         <div class="col-md-7">
         help

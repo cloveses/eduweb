@@ -16,6 +16,7 @@ class User(Document):
 class ProjectName(Document):
     name = StringField(required=True)
     url = StringField(required=True)
+    introduce = StringField()
     status = BooleanField(default=True)
 
         

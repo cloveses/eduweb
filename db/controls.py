@@ -29,9 +29,14 @@ def del_user(name):
         res[0].delete()
         return True
 
-def add_proname(name,url):
+def add_proname(name,url,introduce):
+    res = ProjectName.objects(url=url)
+    if res.count():
+        return "Url already has existed!"
     if name and url:
-        ProjectName(name=name,url=url).save()
+        ProjectName(name=name,url=url,introduce=introduce).save()
+        return "Add successful!"
+    return "Add Failure!"
 
 def chn_status(name):
     res = ProjectName.objects(name=name)
@@ -39,6 +44,22 @@ def chn_status(name):
         doc = res[0]
         doc.status = not doc.status
         doc.save()
+
+def get_intr_from_url(url):
+    res = ProjectName.objects(url=url)
+    if res.count():
+        info = res[0].introduce
+    return info if info else ''
+
+def get_info_from_url(url):
+    res = ProjectName.objects(url=url)
+    if res.count():
+        info = res[0].introduce
+        info = info if info else ''
+        name = res[0].name
+        return name,info
+    return '',''
+
 
 def add_admin():
     if not User.objects(name=superadmin).count():

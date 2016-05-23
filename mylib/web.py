@@ -67,8 +67,8 @@ class BaseHandler(tornado.web.RequestHandler):
             except mako.exceptions.TopLevelLookupException:
                 print('Do not find templates files!')
                 self.send_error(404)
-            else:
-                BaseHandler._mako_templates[template_name] = mtemplate
+            # else:
+            #     BaseHandler._mako_templates[template_name] = mtemplate
         namespace = self.get_template_namespace()
         namespace.update(kwargs)
         content = mtemplate.render(**namespace)

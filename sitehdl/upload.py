@@ -7,13 +7,15 @@ from mylib.myxltools import verify
 from .szupload_set import *
 from db import controls
 
-@route('/szupload')
-class SzUploadHdl(BaseHandler):
-    def get(self):
+@route('/upload/([\w]+)')
+class UploadHdl(BaseHandler):
+    def get(self,url):
+        self.url = url
         urls = controls.get_all_pro()
-        self.render('szupload.html',{"hint_info":self.hint_info,
+        name,introduce = controls.get_info_from_url(url)
+        self.render('upload.html',{"hint_info":self.hint_info,
             "upload_max_size":settings.UPLOAD_MAX_SIZE ,
-            "urls":urls})
+            "urls":urls,'introduce':introduce,'name':name,'curl':url})
 
     def post(self):
         # print('recieve file.')
@@ -30,7 +32,8 @@ class SzUploadHdl(BaseHandler):
                 name = ''.join((nm,'1',ext))
             with open(name,'wb') as f:
                 f.write(myfile.body)
-            info = verify.verify_file(name,filters,limits,ncols)
+            mset = __import__('_'.join((self.url,'set')))
+            info = verify.verify_file(name,mset.filters,mset.limits,mset.ncols)
             if info:
                 os.remove(name)
                 info = '数据有误，请重新上传！\n' + info

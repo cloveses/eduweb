@@ -38,7 +38,9 @@ class AdminHdl(BaseHandler):
             return
         name = self.get_argument('name','',strip=True)
         url = self.get_argument('url','',strip=True)
+        introduce = self.get_argument('introduce','',strip=True)
         if name and url:
-            controls.add_proname(name,url)
+            res = controls.add_proname(name,url,introduce)
+            self.set_secure_cookie('info',res)
         self.redirect('/admin')
         # self.write('abc')
