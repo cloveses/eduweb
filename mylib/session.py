@@ -43,7 +43,7 @@ class MongoSessionManager(SessionManagerBase):
         sessions=None
         if session_id:
             session_data = Sessions.objects(session_id=session_id)
-            print(__file__,':',session_data.count())
+            # print(__file__,':',session_data.count())
             if session_data.count():
                 sessions = session_data[0]
                 data = sessions.session_dict

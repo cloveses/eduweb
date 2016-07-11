@@ -27,7 +27,7 @@ import mako.exceptions
 from mylib.session import session
 from mylib import tools
 
-from sha3._sha3 import sha3_512
+from sha3 import sha3_512
 import settings
 
 
